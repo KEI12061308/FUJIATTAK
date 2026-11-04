@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/* カラートークン。カテゴリ色は色覚多様性チェック済みの並び（categories.ts と対応） */
+:root {
+  color-scheme: light;
+  --bg: #f5f5f3;
+  --surface: #fcfcfb;
+  --surface-2: #f0efec;
+  --border: #e2e1dc;
+  --text: #0b0b0b;
+  --text-2: #52514e;
+  --text-3: #6f6e69;
+  --accent: #2a78d6;
+  --accent-fg: #ffffff;
+  --grid: #e2e1dc;
+  --budget: #c3c2b7;
+
+  --cat-food: #2a78d6;
+  --cat-dining: #eb6834;
+  --cat-leisure: #1baf7a;
+  --cat-health: #eda100;
+  --cat-daily: #e87ba4;
+
+  --good: #0ca30c;
+  --warning: #fab219;
+  --critical: #d03b3b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --bg: #121211;
+    --surface: #1a1a19;
+    --surface-2: #252523;
+    --border: #353531;
+    --text: #f0efec;
+    --text-2: #c3c2b7;
+    --text-3: #a09f97;
+    --accent: #3987e5;
+    --accent-fg: #ffffff;
+    --grid: #353531;
+    --budget: #52514e;
+
+    --cat-food: #3987e5;
+    --cat-dining: #d95926;
+    --cat-leisure: #199e70;
+    --cat-health: #c98500;
+    --cat-daily: #d55181;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211;
+  --surface: #1a1a19;
+  --surface-2: #252523;
+  --border: #353531;
+  --text: #f0efec;
+  --text-2: #c3c2b7;
+  --text-3: #a09f97;
+  --accent: #3987e5;
+  --accent-fg: #ffffff;
+  --grid: #353531;
+  --budget: #52514e;
+
+  --cat-food: #3987e5;
+  --cat-dining: #d95926;
+  --cat-leisure: #199e70;
+  --cat-health: #c98500;
+  --cat-daily: #d55181;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-good: var(--good);
+  --color-warning: var(--warning);
+  --color-critical: var(--critical);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", system-ui,
+    sans-serif;
+  font-feature-settings: "palt";
+}
+
+@utility input {
+  @apply w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text outline-none focus:border-accent focus:ring-2 focus:ring-accent/25;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-accent text-accent-fg hover:opacity-90;
+}
+@utility btn-secondary {
+  @apply btn border border-border bg-surface text-text hover:bg-surface-2;
+}
+@utility btn-danger {
+  @apply btn border border-border bg-surface text-critical hover:bg-surface-2;
+}
+
+@utility card {
+  @apply rounded-xl border border-border bg-surface p-4 sm:p-5;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
